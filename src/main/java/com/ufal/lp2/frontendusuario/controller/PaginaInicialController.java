@@ -25,4 +25,13 @@ public class PaginaInicialController{
 	public String index() {
 		return "index";
 	}
+	
+	@RequestMapping(value = "/inscrever", method = RequestMethod.GET)
+    public String inscrever(Model modelo) {
+        Usuario usuario = new Usuario();
+
+        modelo.addAttribute("usuario", usuario);
+
+        return "inscrever";
+    }
 }
