@@ -8,10 +8,10 @@
 		<version>2.1.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>UserFrontend</groupId>
-	<artifactId>UserFrontend</artifactId>
+	<groupId>FrontendUsuario</groupId>
+	<artifactId>FrontendUsuario</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>UserFrontend</name>
+	<name>FrontendUsuario</name>
 	<description>Frontend de usuário do projeto Banco Online</description>
 
 	<properties>
