@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header" />
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!--<head th:replace="common/header :: navbar" />-->
+<div class="container">
+    <div class="row main">
+        <div class="panel-heading">
+            <div class="panel-title text-center">
+                <h1 class="title">Inscrever-se</h1>
+                <hr />
+            </div>
+        </div>
+        <div class="main-login main-center">
+            <form class="form-horizontal" method="post" th:action="@{/inscrever}">
+
+                <div class="form-group">
+                    <label for="primeiroNome" class="cols-sm-2 control-label">Primeiro Nome</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${usuario.primeiroNome}" id="primeiroNome" name="primeiroNome" roleId="primeiroNome"  placeholder="Digite seu primeiro nome" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ultimoNome" class="cols-sm-2 control-label">Último Nome</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${usuario.ultimoNome}" id="ultimoNome" name="ultimoNome" roleId="ultimoNome"  placeholder="Digite seu último nome" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone" class="cols-sm-2 control-label">Telefone</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${usuario.telefone}" id="telefone" name="telefone" roleId="telefone"  placeholder="xx-xxxxx-xxxx" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="cols-sm-2 control-label">Seu e-mail</label><span class="bg-danger pull-right" th:if="${existeEmail}"> O e-mail já existe</span>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${usuario.email}" id="email" name="email" roleId="email"  placeholder="Digite seu e-mail" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nomeUsuario" class="cols-sm-2 control-label">Nome de Usuário</label><span class="bg-danger pull-right" th:if="${existeNomeUsuario}">Nome de usuário já existe</span>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${usuario.nomeUsuario}" id="nomeUsuario" name="nomeUsuario" roleId="nomeUsuario"  placeholder="Digite seu nome de usuário" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha" class="cols-sm-2 control-label">Senha</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" th:value="${usuario.senha}" id="senha" name="senha" roleId="senha"  placeholder="Digite sua senha" required="required"/>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input id="mostrarSenha" type="checkbox" />Mostrar senha
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="form-group">-->
+                    <!--<label for="confirm" class="cols-sm-2 control-label">Confirm Secret</label>-->
+                    <!--<div class="cols-sm-10">-->
+                        <!--<div class="input-group">-->
+                            <!--<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>-->
+                            <!--<input type="secret" class="form-control" name="confirm" roleId="confirm"  placeholder="Confirm your Secret" required="required"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <div class="form-group ">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Inscrever-se!</button>
+                </div>
+                
+                <hr />
+                
+				<div class="form-group ">
+                    <a  class="btn btn-info btn-lg btn-block login-button" th:href="@{/}">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts" />
+
+</body>
+</html>
