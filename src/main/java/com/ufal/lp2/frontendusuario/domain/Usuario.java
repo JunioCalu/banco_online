@@ -1,22 +1,35 @@
 package com.ufal.lp2.frontendusuario.domain;
 
+import java.util.Collection;
 import java.util.List;
 
-public class Usuario {
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+
+public class Usuario implements UserDetails{
+	
 	private Long usuarioId;
 	private String nomeUsuario;
+    private String senha;
 	private String primeiroNome;
 	private String ultimoNome;
+	
+
 	private String email;
 	private String telefone;
 	
 	private boolean habilitado=true;
 	
 	private ContaCorrente contaCorrente;
-	private ContaPoupanca contaPoupanca;
-	private List<Agendamento> listaAgendamento;
-	private List<Recebedor> listaRecebor;
 	
+	private ContaPoupanca contaPoupanca;
+	
+	private List<Agendamento> listaAgendamento;
+	
+	private List<Recebedor> listaRecebor;
+		
 	
 	public Long getUsuarioId() {
 		return usuarioId;
@@ -84,13 +97,60 @@ public class Usuario {
 	public void setListaRecebor(List<Recebedor> listaRecebor) {
 		this.listaRecebor = listaRecebor;
 	}
-	@Override
-	public String toString() {
-		return "Usuario [usuarioId=" + usuarioId + ", nomeUsuario=" + nomeUsuario + ", primeiroNome=" + primeiroNome
-				+ ", ultimoNome=" + ultimoNome + ", email=" + email + ", telefone=" + telefone + ", habilitado="
-				+ habilitado + "]";
+	
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "Usuario [usuarioId=" + usuarioId + ", nomeUsuario=" + nomeUsuario + ", senha=" + senha
+				+ ", primeiroNome=" + primeiroNome + ", ultimoNome=" + ultimoNome + ", email=" + email + ", telefone="
+				+ telefone + ", habilitado=" + habilitado + ", contaCorrente=" + contaCorrente + ", contaPoupanca="
+				+ contaPoupanca + ", listaAgendamento=" + listaAgendamento + ", listaRecebor=" + listaRecebor
+				+ "]";
+	}
+	
+
+
+    @Override
+    public boolean isEnabled() {
+        return habilitado;
+    }
+    
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
