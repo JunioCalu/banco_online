@@ -2,9 +2,18 @@ package com.ufal.lp2.frontendusuario.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class TransacaoContaPoupanca {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Date data;
 	private String descricao;
@@ -13,9 +22,13 @@ public class TransacaoContaPoupanca {
 	private double montante;
 	private BigDecimal saldoDisponivel;
 	
+	@ManyToOne
+	@JoinColumn(name = "conta_poupanca_id")
+	private ContaPoupanca contaPoupanca;
 	
+
 	public TransacaoContaPoupanca(Date data, String descricao, String tipo, String status, double montante,
-			BigDecimal saldoDisponivel) {
+			BigDecimal saldoDisponivel, ContaPoupanca contaPoupanca) {
 		super();
 		this.data = data;
 		this.descricao = descricao;
@@ -23,6 +36,7 @@ public class TransacaoContaPoupanca {
 		this.status = status;
 		this.montante = montante;
 		this.saldoDisponivel = saldoDisponivel;
+		this.contaPoupanca = contaPoupanca;
 	}
 	
 	public Long getId() {

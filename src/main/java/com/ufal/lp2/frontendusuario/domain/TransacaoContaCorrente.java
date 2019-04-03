@@ -3,8 +3,19 @@ package com.ufal.lp2.frontendusuario.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+@Entity
 public class TransacaoContaCorrente {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Date data;
 	private String descricao;
@@ -12,6 +23,9 @@ public class TransacaoContaCorrente {
 	private String status;
 	private double montante;
 	private BigDecimal saldoDisponivel;
+	
+	@ManyToOne
+	@JoinColumn(name = "conta_corrente_id")
 	private ContaCorrente contaCorrente;
 	
 	public TransacaoContaCorrente() {}
