@@ -1,35 +1,60 @@
 package com.ufal.lp2.frontendusuario.domain;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Entity
 public class Usuario implements UserDetails{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "usuarioId", nullable = false, updatable = false)
 	private Long usuarioId;
-	private String nomeUsuario;
+	private String username;
     private String senha;
 	private String primeiroNome;
 	private String ultimoNome;
 	
-
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 	private String telefone;
 	
 	private boolean habilitado=true;
 	
+	@OneToOne
 	private ContaCorrente contaCorrente;
 	
+	@OneToOne
 	private ContaPoupanca contaPoupanca;
 	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Agendamento> listaAgendamento;
 	
-	private List<Recebedor> listaRecebor;
-		
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Recebedor> listaRecebedor;
+	
 	
 	public Long getUsuarioId() {
 		return usuarioId;
@@ -37,12 +62,7 @@ public class Usuario implements UserDetails{
 	public void setUsuarioId(Long usuarioId) {
 		this.usuarioId = usuarioId;
 	}
-	public String getNomeUsuario() {
-		return nomeUsuario;
-	}
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
-	}
+	
 	public String getPrimeiroNome() {
 		return primeiroNome;
 	}
@@ -91,11 +111,11 @@ public class Usuario implements UserDetails{
 	public void setListaAgendamento(List<Agendamento> listaAgendamento) {
 		this.listaAgendamento = listaAgendamento;
 	}
-	public List<Recebedor> getListaRecebor() {
-		return listaRecebor;
+	public List<Recebedor> getListaRecebedor() {
+		return listaRecebedor;
 	}
-	public void setListaRecebor(List<Recebedor> listaRecebor) {
-		this.listaRecebor = listaRecebor;
+	public void setListaRecebedor(List<Recebedor> listaRecebedor) {
+		this.listaRecebedor = listaRecebedor;
 	}
 	
 	public String getSenha() {
@@ -104,19 +124,23 @@ public class Usuario implements UserDetails{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
-	@Override
-	public String toString() {
-		return "Usuario [usuarioId=" + usuarioId + ", nomeUsuario=" + nomeUsuario + ", senha=" + senha
-				+ ", primeiroNome=" + primeiroNome + ", ultimoNome=" + ultimoNome + ", email=" + email + ", telefone="
-				+ telefone + ", habilitado=" + habilitado + ", contaCorrente=" + contaCorrente + ", contaPoupanca="
-				+ contaPoupanca + ", listaAgendamento=" + listaAgendamento + ", listaRecebor=" + listaRecebor
-				+ "]";
-	}
-	
+		
 
-
+    public String toString() {
+        return "Usuario{" +
+                "usuarioId=" + usuarioId +
+                ", username='" + username + '\'' +
+                ", senha='" + senha + '\'' +
+                ", primeiroNome='" + primeiroNome + '\'' +
+                ", ultimoNome='" + ultimoNome + '\'' +
+                ", email='" + email + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", listaAgendamento=" + listaAgendamento +
+                ", listRecebedor=" + listaRecebedor +
+                '}';
+    }
+	
+	
     @Override
     public boolean isEnabled() {
         return habilitado;
@@ -142,15 +166,18 @@ public class Usuario implements UserDetails{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
 
 }

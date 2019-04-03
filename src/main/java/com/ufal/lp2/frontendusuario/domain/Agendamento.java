@@ -2,24 +2,28 @@ package com.ufal.lp2.frontendusuario.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Agendamento {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO )
 	private Long id;
-	private Date date;
+	private Date data;
 	private String localizacao;
 	private String descricao;
 	private boolean confirmado;
+	
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
-	public Agendamento(Date date, String localizacao, String descricao, boolean confirmado, Usuario usuario) {
-		super();
-		this.date = date;
-		this.localizacao = localizacao;
-		this.descricao = descricao;
-		this.confirmado = confirmado;
-		this.usuario = usuario;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -28,12 +32,12 @@ public class Agendamento {
 		this.id = id;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getData() {
+		return data;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public String getLocalizacao() {
@@ -52,7 +56,7 @@ public class Agendamento {
 		this.descricao = descricao;
 	}
 
-	public boolean isConfirmado() {
+	public boolean eConfirmado() {
 		return confirmado;
 	}
 
@@ -67,7 +71,17 @@ public class Agendamento {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
 
+
+    @Override
+    public String toString() {
+        return "Agendamento{" +
+                "id=" + id +
+                ", data=" + data +
+                ", localizacao='" + localizacao + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", usuario=" + usuario +
+                '}';
+	
+    }
 }
