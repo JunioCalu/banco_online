@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar"/>
+<div class="container main">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Marque uma agendamento</h3>
+            <form th:action="@{/agendamento/criar}" method="post" id="appointmentForm">
+                <input type="hidden" name="id" th:value="${agendamento.id}"/>
+
+                <div class="form-group">
+                    <label for="dateString">Escolha uma Data e Hora:</label>
+                    <div class="input-append date form_datetime input-group" data-date="2017-01-20T15:25:00Z">
+                        <input class="form-control" type="text" value="" readonly="readonly"
+                               th:value="${stringData}" name="dateString"
+                               id="dateString" required="required"/>
+                        <span class="input-group-addon"><i class="fa fa-times" aria-hidden="true"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Escolha uma roupa:</label>
+                    <select class="form-control" th:value="${agendamento.localizacao}" name="location" id="location"
+                            >
+                        <option disabled="disabled" selected="selected" > -- selecione uma localização --</option>
+                        <option>Arapiraca</option>
+                        <option>Palmeira dos Índios</option>
+                        <option>Maceio</option>
+                        <option>Penedo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Notas:</label>
+                    <textarea th:value="${agendamento.descricao}" class="form-control" name="description" id="description" placeholder="Descrição" ></textarea>
+                </div>
+
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+
+                <a class="btn btn-primary" id="submitAppointment">Submeter Agendamento</a>
+            </form>
+
+            <div class="col-md-6">
+            </div>
+        </div>
+    </div>
+    <br/>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

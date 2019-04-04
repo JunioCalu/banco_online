@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar"/>
+<div class="container main">
+    <div class="row">
+        <div class="col-md-6">
+            <form th:action="@{/transferencia/entreContas}" method="post">
+                <div class="form-group" >
+                    <label for="transferFrom">1. Selecione a conta pela qual você gostoria de transferir:</label>
+                    <select class="form-control" th:value="${transferirDe}" name="transferFrom" id="transferFrom" required="required">
+                        <option  disabled="disabled" selected="selected"> -- selecione sua conta -- </option>
+                        <option value="Corrente">Conta Corrente</option>
+                        <option value="Poupanca">Conta Poupança</option>
+                    </select>
+                    <br />
+                </div>
+
+                <div class="form-group" >
+                    <label for="transferTo">2. Por favor, selecione a conta para qual você deseja transferir:</label>
+                    <select class="form-control" th:value="${transferirPara}" name="transferTo" id="transferTo" required="required">
+                        <option  disabled="disabled" selected="selected"> -- selecione sua conta -- </option>
+                        <option value="Corrente">Conta Corrente</option>
+                        <option value="Poupanca">Conta Poupança</option>
+                    </select>
+                    <br />
+                </div>
+
+                <div class="form-group">
+                    <label>3. Por favor, especifique o valor que você gostaria de transferir: </label>
+                    <span class="input-group-addon">Montante $</span>
+                    <input th:value="${montante}" type="text" name="amount" id="amount" class="form-control" aria-label="Montante (em Reais)"/>
+                </div>
+
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Transferir</button>
+            </form>
+
+            <div class="col-md-6">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>
