@@ -1,30 +1,45 @@
 package com.ufal.lp2.frontendusuario.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class Recebedor {
-	
-	private Long id;
-	private String nome;
-	private String email;
-	private String telefone;
-	private String numeroConta;
-	private String descricao;
-	
-	private Usuario usuario;
 
-	public Long getId() {
-		return id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private String email;
+    private String telefone;
+    private String accountNumber;
+    private String descricao;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    @JsonIgnore
+    private Usuario usuario;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+	public String getName() {
+		return name;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -43,12 +58,12 @@ public class Recebedor {
 		this.telefone = telefone;
 	}
 
-	public String getNumeroConta() {
-		return numeroConta;
+	public String getAccountNumber() {
+		return accountNumber;
 	}
 
-	public void setNumeroConta(String numeroConta) {
-		this.numeroConta = numeroConta;
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 
 	public String getDescricao() {
@@ -66,6 +81,5 @@ public class Recebedor {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
 }
+

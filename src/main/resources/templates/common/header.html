@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Frontend de Usuário</title>
+    <title>Frontend Usuário</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Estilo de fonte do Website -->
+    <!-- Website Font style -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
 
     <!-- Google Fonts -->
@@ -21,7 +21,7 @@
     <!--bootstrap date-time picker-->
     <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
-    <!--tabela de dados-->
+    <!--data table-->
     <link href="/css/jquery.dataTable.min.css" rel="stylesheet" />
     <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 
@@ -32,7 +32,7 @@
 <body>
 <!-- Navigation -->
 <div th:fragment="navbar">
-    <img class="img-responsive" src="/images/banner.png" alt="banner"/>
+    <img class="img-responsive" src="/images/bancobanner.png" alt="banner"/>
 
     <nav class="navbar navbar-default " role="navigation">
     <div class="container">
@@ -43,7 +43,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" th:href="@{/frontendUsuario}">Página Inicial</a>
+            <a class="navbar-brand page-scroll" th:href="@{/frontendUsuario}">Pagina Inicial</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,16 +64,16 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transferir <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a th:href="@{/transferir/entreContas}">Entre contas</a></li>
-                        <li><a th:href="@{/transferir/paraOutraPessoa}">Para outra pessoa</a></li>
+                        <li><a th:href="@{/transferencia/entreContas}">Entre Contas</a></li>
+                        <li><a th:href="@{/transfer/toSomeoneElse}">Para outra Pessoa</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a th:href="@{/transferir/recebedor}">adicionar/Editar Recebedor</a></li>
+                        <li><a th:href="@{/transfer/recipient}">Adicionar/Editar Recebedor</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agendamento <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a th:href="@{/agendamento/criar}">Marcar um agendamento</a></li>
+                        <li><a th:href="@{/agendamento/criar}">Marcar um Agendamento</a></li>
                     </ul>
                 </li>
             </ul>
@@ -83,7 +83,7 @@
                     <ul class="dropdown-menu">
                         <li><a th:href="@{/usuario/perfil}">Perfil</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a th:href="@{/sair}">Sair</a></li>
+                        <li><a th:href="@{/logout}">Logout</a></li>
                     </ul>
                 </li>
             </ul>
